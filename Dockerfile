@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /application
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app
 
 ENV PORT 8080
-CMD ["/application"]
+CMD ["/app"]
