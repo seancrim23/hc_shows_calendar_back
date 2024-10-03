@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 	"fmt"
-	"hc_shows_backend/models"
-	"hc_shows_backend/utils"
+	"hc_shows_calendar_back/models"
+	"hc_shows_calendar_back/utils"
 	"log"
 	"os"
 	"os/exec"

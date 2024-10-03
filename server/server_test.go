@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"hc_shows_backend/models"
+	"hc_shows_calendar_back/models"
 	"io"
 	"net/http"
 	"net/http/httptest"

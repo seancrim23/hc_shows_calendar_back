@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"hc_shows_backend/models"
-	"hc_shows_backend/utils"
+	"hc_shows_calendar_back/models"
+	"hc_shows_calendar_back/utils"
 
 	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"

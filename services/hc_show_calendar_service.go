@@ -1,6 +1,6 @@
 package services
 
-import "hc_shows_backend/models"
+import "hc_shows_calendar_back/models"
 
 //the hc show calendar service will contain all functions that
 //will interact with the database

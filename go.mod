@@ -1,4 +1,4 @@
-module hc_shows_backend
+module hc_shows_calendar_back
 
 go 1.20
 

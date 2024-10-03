@@ -1,9 +1,9 @@
 package main
 
 import (
-	"hc_shows_backend/server"
-	"hc_shows_backend/services"
-	"hc_shows_backend/utils"
+	"hc_shows_calendar_back/server"
+	"hc_shows_calendar_back/services"
+	"hc_shows_calendar_back/utils"
 	"log"
 	"net/http"
 	"os"
