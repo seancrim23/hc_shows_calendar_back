@@ -19,4 +19,4 @@ RUN apt-get update && apt-get install ca-certificates -y
 FROM scratch
 COPY --from=builder /app/hc_shows_calendar_back /app/
 EXPOSE 8080
-ENTRYPOINT ["/app/hc_shows_calendar_back"]
+CMD ["/hc_shows_calendar_back"]
