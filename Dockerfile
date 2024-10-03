@@ -13,10 +13,10 @@ RUN go mod download
 COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
-RUN apk update && apk add --no-cache git ca-certificates && update-ca-certificates
 
 # final stage
 FROM scratch
 COPY --from=builder /app/hc_shows_calendar_back /app/
+RUN apt-get update && apt-get install ca-certificates -y
 EXPOSE 8080
 ENTRYPOINT ["/app/hc_shows_calendar_back"]
