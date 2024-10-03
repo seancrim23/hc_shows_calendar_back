@@ -1,0 +1,31 @@
+all curl commands for getting token and using:
+
+creating auth to create account:
+curl --header "Content-Type: application/json" --request POST --data '{"email":"<EMAIL_TO_CREATE_ACCOUNT_FOR>"}' http://localhost:8080/auth/setup
+
+creating auth to reset password:
+curl --header "Content-Type: application/json" --request POST --data '{"email":"<EMAIL_TO_RESET_PASSWORD_FOR>"}' http://localhost:8080/auth/reset
+
+actual create account (requires the auth code):
+curl --header "Content-Type: application/json" --request POST --data '{"email":"<EMAIL>", "code":"<AUTH_CODE>","username":"<USERNAME>", "password":"<PASSWORD>"}' http://localhost:8080/user
+
+login:
+curl --header "Content-Type: application/json" --request POST --data '{"username":"<USERNAME>", "password":"<PASSWORD>"}' http://localhost:8080/auth 
+
+get user request (requires a token):
+curl --header "Content-Type: application/json" --header "Authorization: Bearer <TOKEN>" --request GET http://localhost:8080/user
+
+update user request (requires a token) (also makes the assumption that updating a user will always provide the full user object from the frontend):
+curl --header "Content-Type: application/json" --header "Authorization: Bearer <TOKEN>" --data '{"email":"<EMAIL>", "username":"<USERNAME>"}' --request PUT http://localhost:8080/user
+
+reset password:
+curl --header "Content-Type: application/json" --request PUT --data '{"email":"<EMAIL>", "code":"<AUTH_CODE>", "password":"<PASSWORD>"}' http://localhost:8080/user/reset
+
+create show:
+curl --header "Content-Type: application/json" --header "Authorization: Bearer <TOKEN>" --data '{"lineup":["band 1", "band 2", "band 3", "band 4"], "date":"2009-09-10T10:10:10Z", "state":"MD", "city":"Baltimore", "venue":"Charlie's Chowder Chapel", "address":"123 Chowder Ave"}' --request POST http://localhost:8080/show
+
+update show (basically the same as create, just have to pass show id to specify the show being updated):
+curl --header "Content-Type: application/json" --header "Authorization: Bearer <TOKEN>" --data '{"lineup":["band 1", "band 2", "band 3", "band 4"], "date":"2009-09-10T10:10:10Z", "state":"MD", "city":"Dundalk", "venue":"Charlies Chowder Chapel", "address":"123 Chowder Ave"}' --request PUT http://localhost:8080/show/998b25e2-4c75-497e-b314-08eb6d1ee90f
+
+delete show:
+curl --header "Content-Type: application/json" --header "Authorization: Bearer <TOKEN>" --request DELETE http://localhost:8080/show/998b25e2-4c75-497e-b314-08eb6d1ee90f
