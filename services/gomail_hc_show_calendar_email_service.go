@@ -78,17 +78,26 @@ func (g *GomailHcShowCalendarEmailService) NewMail(from string, to []string, sub
 
 func buildEmailBody(templatePath string, mailData MailData) (string, error) {
 	var body bytes.Buffer
-	t, err := template.ParseFiles(templatePath)
+
+	//TODO this depends on cloud storage... should be able to have a lower level solution too
+	fs, err := utils.ReadFileFromBucket(templatePath, os.Getenv(utils.TEMPLATE_BUCKET))
 	if err != nil {
 		fmt.Println(err)
 		return "", err
 	}
-	t.Execute(&body, mailData)
+
+	t := template.Must(template.New(templatePath).Parse(fs))
+
+	err = t.Execute(&body, mailData)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
 	return body.String(), nil
 }
 
 // TODO refactor templates to come from google cloud file store
 var mailTemplateLocations = map[MailType]string{
-	MailConfirmation: "templates/confirm_mail.html",
-	PassReset:        "templates/password_reset.html",
+	MailConfirmation: "confirm_mail.html",
+	PassReset:        "password_reset.html",
 }
