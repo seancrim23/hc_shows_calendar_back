@@ -42,7 +42,7 @@ func NewHCShowCalendarServer(service services.HCShowCalendarService, emailServic
 
 	r.HandleFunc("/auth", h.authUser).Methods("POST")
 	//TODO add admin middleware
-	r.HandleFunc("/auth/setup", utils.WithToken(h.authSetup)).Methods("POST")
+	r.HandleFunc("/auth/setup", h.authSetup).Methods("POST")
 	r.HandleFunc("/auth/reset", h.authReset).Methods("POST")
 
 	r.HandleFunc("/user", h.createUser).Methods("POST")              //token
