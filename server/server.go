@@ -379,17 +379,18 @@ func (h *HCShowCalendarServer) authSetup(w http.ResponseWriter, r *http.Request)
 	var err error
 	var v models.Verification
 
-	userID := r.Context().Value(utils.UserIDKey{}).(string)
-	if userID == "" {
-		code = 400
-		fmt.Println("no user id provided")
-		utils.RespondWithError(w, code, errors.New("no id passed to request").Error())
-		return
-	}
+	/*
+		userID := r.Context().Value(utils.UserIDKey{}).(string)
+		if userID == "" {
+			code = 400
+			fmt.Println("no user id provided")
+			utils.RespondWithError(w, code, errors.New("no id passed to request").Error())
+			return
+		}*/
 
 	//TODO i think this is the lazy way to do this (even though its not terrible imo), update at some point to better way
 	//maybe middleware function
-	uObject, err := h.service.GetUser(userID)
+	/*uObject, err := h.service.GetUser(userID)
 	if err != nil {
 		code = 400
 		utils.RespondWithError(w, code, err.Error())
@@ -400,7 +401,7 @@ func (h *HCShowCalendarServer) authSetup(w http.ResponseWriter, r *http.Request)
 		fmt.Println("user cannot setup new authentication")
 		utils.RespondWithError(w, code, errors.New("user cannot setup new authentication").Error())
 		return
-	}
+	}*/
 
 	reqBody, err := io.ReadAll(r.Body)
 	if err != nil {
