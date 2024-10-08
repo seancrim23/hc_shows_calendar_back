@@ -64,17 +64,22 @@ func validateToken(tokenString string) (string, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &TokenCustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		secret, err := AccessSecretVersion(SECRET_USER_KEY)
 		if err != nil {
+			fmt.Println("error accessing secret")
+			fmt.Println(err)
 			return "", err
 		}
 		return []byte(secret), nil
 	})
 
 	if err != nil {
+		fmt.Println("error parsing with claims")
+		fmt.Println(err)
 		return "", err
 	}
 
 	claims, ok := token.Claims.(*TokenCustomClaims)
 	if !ok || !token.Valid || claims.Username == "" {
+		fmt.Println("error deconstructing token")
 		return "", fmt.Errorf("invalid token")
 	}
 
