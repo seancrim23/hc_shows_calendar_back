@@ -1,0 +1,36 @@
+{
+    "emulators": {
+      "ui": {
+        "enabled": true,
+        "port": "4000"
+      },
+      "hub": {
+        "port": "4400"
+      },
+      "logging": {
+        "port": "4600"
+      },
+      "functions": {
+        "port": "5001"
+      },
+      "firestore": {
+        "enabled": true,
+        "port": "5050"
+      },
+      "pubsub": {
+        "port": "8085"
+      },
+      "database": {
+        "port": "9000"
+      },
+      "auth": {
+        "port": "9099"
+      },
+      "storage": {
+        "port": "9199"
+      },
+      "hosting": {
+        "port": "6000"
+      }
+    }
+  }
